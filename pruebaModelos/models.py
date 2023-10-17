@@ -10,8 +10,6 @@ class Usuarios(models.Model):
     contraseña = models.TextField()
     fechaRegistro = models.DateTimeField(default=timezone.now)
     
-    
-
 
 class Tarea(models.Model):
     
@@ -32,6 +30,7 @@ class Tarea(models.Model):
     horaVencimineto = models.DateField()
     
     creador = models.ForeignKey(Usuarios,on_delete=models.CASCADE)
+    usuario = models.ManyToManyField(Usuarios, through="AsignacionTarea", related_name="usuario_asignado")
     
     
 
@@ -42,12 +41,11 @@ class Proyecto(models.Model):
     fechaInicio = models.DateTimeField()
     fechaFin = models. DateTimeField()
     
-    creador = models.OneToOneField(Usuarios , on_delete=models.CASCADE)
+    creador = models.ForeignKey(Usuarios , on_delete=models.CASCADE)
     tareas_proyecto = models.ForeignKey(Tarea, on_delete=models.CASCADE)
+    usuario = models.ManyToManyField(Usuarios, through="Proyectos_asignados",related_name="usuarioAsignado")
     
-    
-class Etiqueta(models.Model):
-    nombre = models.CharField(max_length=100,unique=True)
+
     
     
 class AsignacionTarea(models.Model):
@@ -56,6 +54,10 @@ class AsignacionTarea(models.Model):
     autor = models.ForeignKey(Usuarios,on_delete=models.CASCADE)
     tarea = models.ForeignKey(Tarea,on_delete=models.CASCADE)
     
+    
+class Etiqueta(models.Model):
+    nombre = models.CharField(max_length=100,unique=True)
+    tarea = models.ManyToManyField(Tarea, through="Etiquetas_asociadas", related_name="etiqueta_asociada")    
     
 class Comentario(models.Model):
     contenido = models.CharField(max_length=100)
