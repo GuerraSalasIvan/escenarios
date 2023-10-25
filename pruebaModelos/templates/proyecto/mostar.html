@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <p><a href="{% url 'index' %}">Volver al inicio</a> </p>
+        <h1>LISTA DE PROYECTOS <h1>
+            
+
+            +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+
+        {% for proyecto in mostrar_proyectos %}
+            <h2>Nombre: {{ proyecto.nombre }}</h2>
+            <p>descripcion: {{ proyecto.descripcion }}</p>
+            <p>duracion: {{ proyecto.duracion }}</p>
+            <p>fechaInicio: {{ proyecto.fechaInicio }}</p>
+            <p>fechaFin: {{ proyecto.fechaFin }}</p>
+            <p>creador: {{ proyecto.creador.nombre }}</p>
+            <p>tareas_proyecto: {{ proyecto.tareas_proyecto.nombre }}</p>
+
+
+            {% for usuario in proyecto.usuario.all %}
+                <h4> + + Proyecto_asignado a: {{ usuario.nombre }}</h4>
+            
+            {% endfor %}
+
+            -------------------------------------------------------
+
+        {% endfor %}
+        <br>
+        <br>
+        
+    </body>
+</html>

@@ -50,7 +50,7 @@ class Proyecto(models.Model):
     
 class AsignacionTarea(models.Model):
     oberservaciones = models.CharField(max_length=100)
-    fechaAsignacion = models.DateTimeField()
+    fechaAsignacion = models.DateTimeField(default=timezone.now)
     autor = models.ForeignKey(Usuarios,on_delete=models.CASCADE)
     tarea = models.ForeignKey(Tarea,on_delete=models.CASCADE)
     
@@ -61,7 +61,7 @@ class Etiqueta(models.Model):
     
 class Comentario(models.Model):
     contenido = models.CharField(max_length=100)
-    fechaComentario = models.DateTimeField()
+    fechaComentario = models.DateTimeField(default=timezone.now)
     
     autor = models.OneToOneField(Usuarios, on_delete=models.CASCADE)
     rel_tarea = models.OneToOneField(Tarea, on_delete=models.CASCADE)
