@@ -10,3 +10,8 @@ def mostar_proyectos(request):
     proyectos = Proyecto.objects.select_related("tareas_proyecto").select_related("creador").prefetch_related("usuario").all()
     
     return render(request, 'proyecto/mostar.html',{"mostrar_proyectos":proyectos})
+
+def mostar_tareas_ordenado (request):
+    tareas = Tarea.objects.select_related("creador").prefetch_related("usuario").order_by("-fechaCreacion").all()
+    
+    return render(request, 'tarea/mostrar_tarea.html',{'mostrar_tarea':tareas})
