@@ -22,11 +22,10 @@
             <p>fechaInicio: {{ proyecto.fechaInicio }}</p>
             <p>fechaFin: {{ proyecto.fechaFin }}</p>
             <p>creador: {{ proyecto.creador.nombre }}</p>
-            <p>tareas_proyecto: {{ proyecto.tareas_proyecto.nombre }}</p>
 
-
+            <h4> + + Proyecto asignado a:</h4> 
             {% for usuario in proyecto.usuario.all %}
-                <h4> + + Proyecto_asignado a: {{ usuario.nombre }}</h4>
+                <p>  -  {{ usuario.nombre }}</p>
             
             {% endfor %}
 

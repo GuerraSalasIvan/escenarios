@@ -11,6 +11,17 @@ class Usuarios(models.Model):
     fechaRegistro = models.DateTimeField(default=timezone.now)
     
 
+class Proyecto(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    duracion = models.FloatField()
+    fechaInicio = models.DateTimeField()
+    fechaFin = models. DateTimeField()
+    
+    creador = models.ForeignKey(Usuarios , on_delete=models.CASCADE)
+    usuario = models.ManyToManyField(Usuarios, through="Proyectos_asignados",related_name="usuarioAsignado")
+       
+ 
 class Tarea(models.Model):
     
     ESTADOS = ('PE','Pendiente'),
@@ -31,22 +42,8 @@ class Tarea(models.Model):
     
     creador = models.ForeignKey(Usuarios,on_delete=models.CASCADE)
     usuario = models.ManyToManyField(Usuarios, through="AsignacionTarea", related_name="usuario_asignado")
-    
-    
+    tareas_proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
 
-class Proyecto(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    duracion = models.FloatField()
-    fechaInicio = models.DateTimeField()
-    fechaFin = models. DateTimeField()
-    
-    creador = models.ForeignKey(Usuarios , on_delete=models.CASCADE)
-    tareas_proyecto = models.ForeignKey(Tarea, on_delete=models.CASCADE)
-    usuario = models.ManyToManyField(Usuarios, through="Proyectos_asignados",related_name="usuarioAsignado")
-    
-
-    
     
 class AsignacionTarea(models.Model):
     oberservaciones = models.CharField(max_length=100)
@@ -58,6 +55,7 @@ class AsignacionTarea(models.Model):
 class Etiqueta(models.Model):
     nombre = models.CharField(max_length=100,unique=True)
     tarea = models.ManyToManyField(Tarea, through="Etiquetas_asociadas", related_name="etiqueta_asociada")    
+    
     
 class Comentario(models.Model):
     contenido = models.CharField(max_length=100)

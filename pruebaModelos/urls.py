@@ -8,6 +8,13 @@ urlpatterns = [
     
     path('tareas/ordenado',views.mostar_tareas_ordenado, name='mostar_tareas_ordenado'),
     
-    path('tarea_asociada/<int:id_proyecto>',views.mostar_tareas_asociadas, name='mostar_tareas_asociadas'),
+    path('usuario_asociado_tarea/<int:id_tarea>',views.usuario_asociado_tarea, name='usuario_asociado_tarea'),
+    
+    path('tarea_contenga_observacion/<str:texto>',views.tarea_contenga_observacion, name='tarea_contenga_observacion'),
+    
+    path('ultimo_usuario_comentado_tarea/<int:id_proyecto>',views.ultimo_usuario_comentado_tarea, name='ultimo_usuario_comentado_tarea'),
+    
+    
+    
     
 ]
