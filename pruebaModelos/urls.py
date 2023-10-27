@@ -12,6 +12,8 @@ urlpatterns = [
     
     path('tarea_contenga_observacion/<str:texto>',views.tarea_contenga_observacion, name='tarea_contenga_observacion'),
     
+    path('proyecto_entre_fechas/<int:fechaMax>/<int:fechaMin>',views.proyecto_entre_fechas, name='proyecto_entre_fechas'),
+    
     path('ultimo_usuario_comentado_tarea/<int:id_proyecto>',views.ultimo_usuario_comentado_tarea, name='ultimo_usuario_comentado_tarea'),
     
     

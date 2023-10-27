@@ -26,8 +26,8 @@ def tarea_contenga_observacion(request, texto):
     
     return render(request, 'tarea/mostrar_tarea.html',{'mostrar_tarea':tareas})
 
-
-
+def proyecto_entre_fechas(request, fechaMax, fechaMin):
+    pass
 
 def ultimo_usuario_comentado_tarea(request, id_proyecto):
     comentario = Comentario.objects.select_related("autor").select_related("rel_tarea").filter(rel_tarea__tareas_proyecto=id_proyecto).order_by("fechaComentario")[:1].get()
