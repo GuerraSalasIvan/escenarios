@@ -16,7 +16,7 @@ urlpatterns = [
     
     path('ultimo_usuario_comentado_tarea/<int:id_proyecto>',views.ultimo_usuario_comentado_tarea, name='ultimo_usuario_comentado_tarea'),
     
-    
+    path('comentario_tarea_año/<int:id_tarea>/<str:texto>/<int:anyo>',views.comentario_tarea_año, name='comentario_tarea_año'),
     
     
 ]

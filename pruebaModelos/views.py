@@ -27,10 +27,18 @@ def tarea_contenga_observacion(request, texto):
     return render(request, 'tarea/mostrar_tarea.html',{'mostrar_tarea':tareas})
 
 def proyecto_entre_fechas(request, fechaMax, fechaMin):
-    pass
+    tareas = Tarea.objects.select_related("creador").select_related("tareas_proyecto").prefetch_related("usuario").filter(fechaCreacion__year__gt=fechaMin).filter(fechaCreacion__year__lt=fechaMax).filter(estadio='CO').all()
+    
+    return render(request, 'tarea/mostrar_tarea.html',{'mostrar_tarea':tareas})
+    
 
 def ultimo_usuario_comentado_tarea(request, id_proyecto):
     comentario = Comentario.objects.select_related("autor").select_related("rel_tarea").filter(rel_tarea__tareas_proyecto=id_proyecto).order_by("fechaComentario")[:1].get()
     
     return render(request, 'comentario/mostrar_comentario.html', {'comentario':comentario})
+    
+def comentario_tarea_año(request, id_tarea, texto, anyo):
+    comentario = Comentario.objects.select_related("autor").select_related("rel_tarea").filter(rel_tarea=id_tarea).filter(contenido__contains=texto).filter(fechaComentario__year=anyo).all()
+    
+    return render(request, 'comentario/mostrar.html', {'comentario':comentario})
     
