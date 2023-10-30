@@ -18,5 +18,5 @@ urlpatterns = [
     
     path('comentario_tarea_año/<int:id_tarea>/<str:texto>/<int:anyo>',views.comentario_tarea_año, name='comentario_tarea_año'),
     
-    
+    path('lista_etiquetas',views.lista_etiquetas, name='lista_etiquetas'),
 ]

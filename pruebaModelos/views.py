@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.views.defaults import page_not_found
 
 # Create your views here.
 
@@ -36,9 +37,28 @@ def ultimo_usuario_comentado_tarea(request, id_proyecto):
     comentario = Comentario.objects.select_related("autor").select_related("rel_tarea").filter(rel_tarea__tareas_proyecto=id_proyecto).order_by("fechaComentario")[:1].get()
     
     return render(request, 'comentario/mostrar_comentario.html', {'comentario':comentario})
+
     
 def comentario_tarea_año(request, id_tarea, texto, anyo):
     comentario = Comentario.objects.select_related("autor").select_related("rel_tarea").filter(rel_tarea=id_tarea).filter(contenido__contains=texto).filter(fechaComentario__year=anyo).all()
     
     return render(request, 'comentario/mostrar.html', {'comentario':comentario})
+
+def lista_etiquetas(request):
+    etiquetas = Etiqueta.objects.distinct()
     
+    return render(request, 'etiqueta/mostrar.html', {'etiqueta':etiquetas})
+
+# ERRORES
+
+def mi_error_404(request, exception=None):
+    return render (request, 'errores/404.html',None, None, 404)
+
+def mi_error_403 (request, exception=None):
+    return render (request, 'errores/403.html',None, None, 403)
+
+def mi_error_400 (request, exception=None):
+    return render (request, 'errores/400.html',None, None, 400)
+
+def mi_error_500(request, exception=None):
+    return render (request, 'errores/500.html',None, None, 500)
