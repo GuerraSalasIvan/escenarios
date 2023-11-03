@@ -1,36 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+{% extends "principal.html" %}
 
-        <h3>El ejercicio 1 no es nada</h3> 
 
-        <h3> Ejercicio 2: <a href="{% url 'mostar_proyectos' %}">Proyectos</a> </h3>
+{% block cabecera %}
+Esta es mi cabecera
+{% endblock cabecera %}
 
-        <h3> Ejercicio 3: <a href="{% url 'mostar_tareas_ordenado' %}">Tareas</a> </h3>
 
-        <h3> Ejercicio 4: <a href="{% url 'usuario_asociado_tarea' 1 %}">usuario asociadas a tarea</a> </h3>
+{% block contenido %}
 
-        <h3> Ejercicio 5:<a href="{% url 'tarea_contenga_observacion' 'tree' %}"> Tareas con un texto x en la observacion</a> </h3>
+ESTA ES MI PAGINA PRINCIPAL
 
-        <h3> Ejercicio 6: <a href="{% url 'proyecto_entre_fechas'  1456 2013 %}"> Tareas entre 2 fechas que esten completadas </a></h3>
-
-        <h3> Ejercicio 7:<a href="{% url 'ultimo_usuario_comentado_tarea' 1 %}"> Ultimo comentario usuario de una tarea </a> </h3>
-
-        <h3> Ejercicio 8: <a href="{% url 'comentario_tarea_año' 1 'si' 2023 %}"> Comentario de una tarea y un año que contenga una cadena</a> </h3>
-
-        <h3> Ejercicio 8: <a href="{% url 'lista_etiquetas' %}"> Todas las etiquetas distintas</a> </h3>
-
-        <h3> Ejercicio 10: Tareas con un texto x en la observacion</a> </h3>
-
-        <h3> Ejercicio 11: Los errores</a> </h3>
-
-    </body>
-</html>
+{% endblock %}

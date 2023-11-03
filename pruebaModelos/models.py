@@ -24,9 +24,10 @@ class Proyecto(models.Model):
  
 class Tarea(models.Model):
     
-    ESTADOS = ('PE','Pendiente'),
+    ESTADOS =[ ('PE','Pendiente'),
     ('PR','Progreso'),
     ('CO','Completada'),
+    ]
     
     nombre = models.TextField()
     descripcion = models.TextField()

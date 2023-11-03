@@ -1,14 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body>
+{% extends "principal.html" %}
+
+{% block cabecera %}
+Mostar tarea
+{% endblock cabecera %}
+
+{% block contenido %}
         <p><a href="{% url 'index' %}">Volver al inicio</a> </p>
         <h1>LISTA DE TAREAS ORDENADAS DESCENDENTEMENTE <h1>
 
@@ -17,5 +13,5 @@
                 <h3>Fecha Creacion: {{ tarea.fechaCreacion }}</h3>
             --------------------------------------------------------------------
             {% endfor %}
-    </body>
-</html>
+{% endblock contenido %}
+

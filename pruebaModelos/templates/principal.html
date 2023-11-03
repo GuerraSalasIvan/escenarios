@@ -1,0 +1,32 @@
+<html>
+    {% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block cabecera %}
+        {% endblock cabecera %}
+    </title>
+    <link rel="stylesheet" href="{% static "css/estilo.css" %}">
+</head>
+
+<body>
+
+    <img src="{% static "imagen/fondo.jpg" %}" alt="Imagen de un paisaje"> 
+    <script src="{% static "js/mensaje.js" %}"></script>
+
+    <h1>Página Principal</h1>
+
+
+
+    {% include "estructuras/html/nav.html" %}
+
+<br>
+
+    {% block contenido %}
+    {% endblock  %}
+
+    {% include "estructuras/html/pie.html" %}
+
+</body>
+</html>
