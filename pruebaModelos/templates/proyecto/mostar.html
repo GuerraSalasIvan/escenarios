@@ -14,12 +14,20 @@ Mostrar proyectos
             +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 
         {% for proyecto in mostrar_proyectos %}
-            <h2>Nombre: {{ proyecto.nombre }}</h2>
-            <p>descripcion: {{ proyecto.descripcion }}</p>
-            <p>duracion: {{ proyecto.duracion }}</p>
-            <p>fechaInicio: {{ proyecto.fechaInicio }}</p>
-            <p>fechaFin: {{ proyecto.fechaFin }}</p>
-            <p>creador: {{ proyecto.creador.nombre }}</p>
+            <h2>Nombre: {{ proyecto.nombre | capfirst }}</h2>
+            <p>descripcion: {{ proyecto.descripcion | default:"sin asignar"}}</p>
+
+            <p>duracion: 
+                {% if proyecto.duracion > 120 %}
+                Proyecto de menos de 2 horas
+                {% else %}
+                {{ proyecto.duracion }}
+                {% endif %}
+            </p>
+
+            <p>fecha: {{ proyecto.fechaInicio | add: proyecto.fechaFin }}</p>
+
+            <p>creador: {{ proyecto.creador.nombre | first}}</p>
 
             <h4> + + Proyecto asignado a:</h4> 
             {% for usuario in proyecto.usuario.all %}
